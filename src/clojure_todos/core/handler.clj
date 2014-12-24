@@ -6,7 +6,8 @@
             [ring.middleware.json :as middleware]
             [ring.adapter.jetty :as ring]
             [compojure.handler :as handler]
-            [clojure-todos.controllers.todos :as todos])
+            [clojure-todos.controllers.todos :as todos]
+            [clojure-todos.model.migrations :as schema])
   (:gen-class))
 
 (defroutes app-routes
@@ -23,5 +24,7 @@
   (ring/run-jetty app {:port port :join? false}))
 
 (defn -main []
+  (println "starting... ")
+  (schema/migrate)
   (let [port (Integer. (or (System/getenv "PORT") "8080"))]
     (start port)))

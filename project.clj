@@ -10,7 +10,7 @@
                  [org.clojure/java.jdbc "0.3.2"]
                  [postgresql "9.1-901.jdbc4"]]
   :plugins [[lein-ring "0.8.13"]]
-  :ring {:handler clojure-todos.core.handler/app}
+  :ring {:handler clojure-todos.core.handler/-main}
   :main ^:skip-aot clojure-todos.core.handler
   :uberjar-name "todos-standalone.jar"
   :profiles
