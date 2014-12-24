@@ -5,16 +5,13 @@
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.middleware.json :as middleware]
             [ring.adapter.jetty :as ring]
-            [compojure.handler :as handler])
+            [compojure.handler :as handler]
+            [clojure-todos.controllers.todos :as todos])
   (:gen-class))
 
-(defn all-todos []
-  (response
-    [{:id 123 :title "nice title"}]))
-
 (defroutes app-routes
+  todos/todo-routes
   (GET "/" [] "Hello World")
-  (GET "/todos" [] (all-todos))
   (route/not-found "Not Found"))
 
 (def app
