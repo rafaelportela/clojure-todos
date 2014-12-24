@@ -5,7 +5,8 @@
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.middleware.json :as middleware]
             [ring.adapter.jetty :as ring]
-            [compojure.handler :as handler]))
+            [compojure.handler :as handler])
+  (:gen-class))
 
 (defn all-todos []
   (response

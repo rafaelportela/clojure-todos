@@ -11,6 +11,9 @@
                  [postgresql "9.1-901.jdbc4"]]
   :plugins [[lein-ring "0.8.13"]]
   :ring {:handler clojure-todos.core.handler/app}
+  :main ^:skip-aot clojure-todos.core.handler
+  :uberjar-name "todos-standalone.jar"
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                        [ring-mock "0.1.5"]]}})
+                        [ring-mock "0.1.5"]]}
+   :uberjar {:aot :all}})
