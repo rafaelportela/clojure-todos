@@ -4,6 +4,7 @@
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [ring.middleware.json :as middleware]
+            [ring.adapter.jetty :as ring]
             [compojure.handler :as handler]))
 
 (defn all-todos []
@@ -19,3 +20,10 @@
   (-> (handler/api app-routes)
     (middleware/wrap-json-body)
     (middleware/wrap-json-response)))
+
+(defn start [port]
+  (ring/run-jetty app {:port port :join? false}))
+
+(defn -main []
+  (let [port (Integer. (or (System/getenv "PORT") "8080"))]
+    (start port)))
